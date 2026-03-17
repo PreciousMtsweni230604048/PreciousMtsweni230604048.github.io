@@ -101,3 +101,8 @@ centralized file servers.
 ```
 
 ---
+## Supporting Documents
+
+- [Copy of ID](./documents/Certified ID of Precious Lebogang Mtsweni.pdf)
+- [Matriculation Certificate](./documents/20260217104952.pdf)
+- [Academic Record](./documents/1000413879.pdf)
