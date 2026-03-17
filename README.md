@@ -13,15 +13,6 @@
 
 ---
 
-## Career Objective
-
-A motivated and detail-oriented ICT student completing a Diploma 
-in ICT: Communication Networks at CPUT, seeking a Work-Integrated 
-Learning opportunity to apply my technical skills in networking, 
-web development, and UI/UX design within a professional environment.
-
----
-
 ## Education
 
 | Institution | Qualification | Year |
