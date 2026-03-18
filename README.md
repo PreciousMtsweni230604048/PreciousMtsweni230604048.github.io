@@ -1,10 +1,12 @@
 # Precious Lebogang Mtsweni
 
+![Precious Lebogang Mtsweni](./images/profile.jpg)
+
 ## Personal Details
 
-- **Address:** 1 Adderley Street, Foreshore, Cape Town, 8001
-- **Contact Number:** 079 949 5701
-- **Email:** 230604048@mycput.ac.za
+- **📍 Address:** 1 Adderley Street, Foreshore, Cape Town, 8001
+- **📞 Contact Number:** 079 949 5701
+- **✉️ Email:** 230604048@mycput.ac.za
 
 ## Profile Links
 
@@ -13,17 +15,16 @@
 
 ---
 
-## Education
+##🎓 Education
 
-| Institution | Qualification | Year |
+| Qualification | Institution | Year |
 |---|---|---|
-| Stanza Bopape Secondary School | National Senior Certificate | 2016 – 2020 |
-| Cape Peninsula University of Technology | Higher Certificate in ICT | 2023 |
-| Cape Peninsula University of Technology | Diploma in ICT: Communication Networks | 2024 – 2026 (to complete) |
-
+| National Senior Certificate | Stanza Bopape Secondary School | 2016 – 2020 |
+| Higher Certificate in ICT | Cape Peninsula University of Technology | 2023 |
+| Diploma in ICT: Communication Networks | Cape Peninsula University of Technology | 2024 – 2026 (to complete) |
 ---
 
-## Work Experience
+##💼 Work Experience
 
 ### Telemarketer — Siyazama Group Holdings
 **Location:** Silvertondale, Pretoria  
@@ -43,7 +44,7 @@
 
 ---
 
-## Projects
+##🚀 Projects
 
 ### E-Portfolio Creation Platform – HC in ICT (2023)
 Designed and developed a web-based e-portfolio platform using 
@@ -65,7 +66,7 @@ centralized file servers.
 
 ---
 
-## Technical Skills
+##🛠️ Technical Skills
 
 - **Operating Systems:** RedHat Linux
 - **Programming Languages:** Java, HTML, C++, JavaScript
@@ -76,7 +77,7 @@ centralized file servers.
 
 ---
 
-## References
+##📋 References
 
 **Reference 1**
 - **Name:** Miss Rachel Mashiloane
