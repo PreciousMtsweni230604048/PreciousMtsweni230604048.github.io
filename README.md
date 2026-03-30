@@ -44,28 +44,6 @@
 
 ---
 
-##🚀 Projects
-
-### E-Portfolio Creation Platform – HC in ICT (2023)
-Designed and developed a web-based e-portfolio platform using 
-HTML, JavaScript, and C++. The platform incorporated skills 
-tagging, NQF/SAQA qualification alignment, and an employer-facing 
-talent discovery directory.
-
-### Discord Features Redesign – Diploma in ICT (2025)
-Redesigned Discord's Server Discovery and Voice Channel features 
-using Figma wireframes. Improvements included personalized 
-recommendations, improved filtering, and a cleaner visual 
-hierarchy to reduce cognitive load.
-
-### Ubuntu Network Design – Diploma in ICT (2025)
-Designed a Three-Layer Hierarchical Model using Cisco Packet 
-Tracer for approximately 50 staff across two floors. The network 
-supported VoIP, separated staff/guest wireless access, and 
-centralized file servers.
-
----
-
 ##🛠️ Technical Skills
 
 - **Operating Systems:** RedHat Linux
