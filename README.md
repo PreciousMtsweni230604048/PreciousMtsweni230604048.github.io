@@ -81,7 +81,7 @@
 
 ## 🎥 Mock Interview Video
 
-<iframe src="https://drive.google.com/file/d/1a02skYD7wwr_eyWZ3NtIirexpxwvdYiy/view?usp=sharing" width="100%" height="500" allowfullscreen></iframe>
+<iframe src="https://drive.google.com/file/d/1a02skYD7wwr_eyWZ3NtIirexpxwvdYiy/view" width="100%" height="500" allowfullscreen></iframe>
 ```
 
 ---
