@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Precious Lebogang Mtsweni – CV</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: 'Segoe UI', Arial, sans-serif;
+      background: #f0f0f0;
+      color: #222;
+      font-size: 13px;
+    }
+    .page {
+      max-width: 860px;
+      margin: 30px auto;
+      display: flex;
+      box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+      background: #fff;
+    }
+    .sidebar {
+      width: 270px;
+      min-width: 270px;
+      background: #1a2a3a;
+      color: #fff;
+      padding: 0 0 30px 0;
+      display: flex;
+      flex-direction: column;
+    }
+    .sidebar-photo {
+      width: 100%;
+      height: 230px;
+      overflow: hidden;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #243447;
+    }
+    .sidebar-photo img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: top;
+    }
+    .sidebar-name {
+      background: #2e86ab;
+      padding: 14px 18px;
+      text-align: center;
+    }
+    .sidebar-name h1 {
+      font-size: 15px;
+      font-weight: 700;
+      color: #fff;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      line-height: 1.4;
+    }
+    .sidebar-section {
+      padding: 16px 18px 4px 18px;
+    }
+    .sidebar-section-title {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #2e86ab;
+      border-bottom: 1px solid #2e86ab;
+      padding-bottom: 4px;
+      margin-bottom: 10px;
+    }
+    .sidebar-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 8px;
+      margin-bottom: 8px;
+      font-size: 12px;
+      color: #cdd6e0;
+      line-height: 1.5;
+    }
+    .sidebar-item .icon {
+      color: #2e86ab;
+      font-size: 13px;
+      margin-top: 1px;
+      min-width: 16px;
+    }
+    .sidebar-item a {
+      color: #cdd6e0;
+      text-decoration: none;
+      word-break: break-all;
+    }
+    .sidebar-item a:hover { color: #2e86ab; }
+    .skills-list { list-style: none; padding: 0; }
+    .skills-list li {
+      font-size: 12px;
+      color: #cdd6e0;
+      padding: 3px 0;
+      border-bottom: 1px solid #243447;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .skills-list li::before {
+      content: '▸';
+      color: #2e86ab;
+      font-size: 10px;
+    }
+    .main {
+      flex: 1;
+      padding: 28px 28px 28px 28px;
+      background: #fff;
+    }
+    .main-section { margin-bottom: 22px; }
+    .main-section-title {
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #2e86ab;
+      border-bottom: 2px solid #2e86ab;
+      padding-bottom: 4px;
+      margin-bottom: 12px;
+    }
+    .edu-item { margin-bottom: 12px; }
+    .edu-item .degree {
+      font-weight: 700;
+      font-size: 13px;
+      color: #1a2a3a;
+    }
+    .edu-item .school {
+      font-size: 12px;
+      color: #555;
+    }
+    .edu-item .year {
+      font-size: 11px;
+      color: #2e86ab;
+      font-weight: 600;
+    }
+    .job-item { margin-bottom: 14px; }
+    .job-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+    }
+    .job-title {
+      font-weight: 700;
+      font-size: 13px;
+      color: #1a2a3a;
+    }
+    .job-duration {
+      font-size: 11px;
+      color: #2e86ab;
+      font-weight: 600;
+      white-space: nowrap;
+      margin-left: 10px;
+    }
+    .job-company {
+      font-size: 12px;
+      color: #555;
+      margin-bottom: 4px;
+    }
+    .job-duties {
+      font-size: 12px;
+      color: #444;
+      padding-left: 14px;
+      list-style: disc;
+      line-height: 1.6;
+    }
+    .project-item { margin-bottom: 12px; }
+    .project-title {
+      font-weight: 700;
+      font-size: 13px;
+      color: #1a2a3a;
+    }
+    .project-desc {
+      font-size: 12px;
+      color: #444;
+      line-height: 1.6;
+      margin-top: 2px;
+    }
+    .ref-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 14px;
+    }
+    .ref-item .ref-name {
+      font-weight: 700;
+      font-size: 13px;
+      color: #1a2a3a;
+    }
+    .ref-item .ref-role {
+      font-size: 12px;
+      color: #2e86ab;
+      margin-bottom: 3px;
+    }
+    .ref-item .ref-contact {
+      font-size: 12px;
+      color: #555;
+      line-height: 1.6;
+    }
+    .objective-text {
+      font-size: 12.5px;
+      color: #444;
+      line-height: 1.7;
+      border-left: 3px solid #2e86ab;
+      padding-left: 12px;
+    }
+    iframe {
+      border-radius: 8px;
+      margin-top: 10px;
+      border: none;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <div class="sidebar">
+    <div class="sidebar-photo">
+      <img src="./images/profile.jpg" alt="Precious Lebogang Mtsweni"/>
+    </div>
+    <div class="sidebar-name">
+      <h1>Precious Lebogang<br>Mtsweni</h1>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Contact</div>
+      <div class="sidebar-item">
+        <span class="icon">📞</span>
+        <span>079 949 5701</span>
+      </div>
+      <div class="sidebar-item">
+        <span class="icon">✉</span>
+        <span>230604048@mycput.ac.za</span>
+      </div>
+      <div class="sidebar-item">
+        <span class="icon">📍</span>
+        <span>1 Adderley St, Foreshore,<br>Cape Town, 8001</span>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Profile Links</div>
+      <div class="sidebar-item">
+        <span class="icon">in</span>
+        <a href="https://www.linkedin.com/in/precious-lebogang-mtsweni-8189bb246" target="_blank">LinkedIn Profile</a>
+      </div>
+      <div class="sidebar-item">
+        <span class="icon">⌥</span>
+        <a href="https://github.com/wil-it-2026/cv-submission-PreciousMtsweni230604048" target="_blank">GitHub Profile</a>
+      </div>
+    </div>
+    <div class="sidebar-section">
+      <div class="sidebar-section-title">Technical Skills</div>
+      <ul class="skills-list">
+        <li>RedHat Linux</li>
+        <li>Java</li>
+        <li>MySQL</li>
+        <li>CISCO Packet Tracer (IOS)</li>
+        <li>Figma &amp; Canva</li>
+        <li>Trello &amp; Microsoft Teams</li>
+        <li>HTML, C++, JavaScript</li>
+      </ul>
+    </div>
+  </div>
+  
+  <div class="main">
+
+    <div class="main-section">
+      <div class="main-section-title">Career Objective</div>
+      <p class="objective-text">
+        A motivated and detail-oriented ICT student completing a Diploma
+        in ICT: Communication Networks at CPUT, seeking a Work-Integrated
+        Learning opportunity to apply my technical skills in networking,
+        web development, and UI/UX design within a professional environment.
+      </p>
+    </div>
+
+    <div class="main-section">
+      <div class="main-section-title">Education</div>
+      <div class="edu-item">
+        <div class="degree">Diploma in ICT: Communication Networks</div>
+        <div class="school">Cape Peninsula University of Technology</div>
+        <div class="year">2024 – 2026 (to complete)</div>
+      </div>
+      <div class="edu-item">
+        <div class="degree">Higher Certificate in ICT</div>
+        <div class="school">Cape Peninsula University of Technology</div>
+        <div class="year">2023</div>
+      </div>
+      <div class="edu-item">
+        <div class="degree">National Senior Certificate</div>
+        <div class="school">Stanza Bopape Secondary School</div>
+        <div class="year">2016 – 2020</div>
+      </div>
+    </div>
+
+    <div class="main-section">
+      <div class="main-section-title">Work Experience</div>
+      <div class="job-item">
+        <div class="job-header">
+          <div class="job-title">Telemarketer</div>
+          <div class="job-duration">2021 – 2023</div>
+        </div>
+        <div class="job-company">
+          Siyazama Group Holdings, Silvertondale – Pretoria
+        </div>
+        <ul class="job-duties">
+          <li>Handled outbound customer calls professionally</li>
+          <li>Communicated product and service information clearly</li>
+          <li>Maintained accurate records of customer interactions</li>
+        </ul>
+      </div>
+      <div class="job-item">
+        <div class="job-header">
+          <div class="job-title">Childcare Worker / Daycare Teacher</div>
+          <div class="job-duration">2021</div>
+        </div>
+        <div class="job-company">
+          Realeboga Day Care, Hammanskraal – Pretoria
+        </div>
+        <ul class="job-duties">
+          <li>Supervised and cared for young children in a structured environment</li>
+          <li>Supported daily learning activities and routines</li>
+          <li>Communicated effectively with parents and colleagues</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="main-section">
+      <div class="main-section-title">References</div>
+      <div class="ref-grid">
+        <div class="ref-item">
+          <div class="ref-name">Miss Rachel Mashiloane</div>
+          <div class="ref-role">Principal – Realeboga DayCare</div>
+          <div class="ref-contact">
+            Bonolomashiloane69@gmail.com<br>
+            072 227 2119
+          </div>
+        </div>
+        <div class="ref-item">
+          <div class="ref-name">Milissa Tommy</div>
+          <div class="ref-role">
+            Skills Development Administrator<br>
+            Siyazama Group Holdings
+          </div>
+          <div class="ref-contact">
+            enquiries@siyazamagroup.co.za<br>
+            010 865 0195
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="main-section">
+      <div class="main-section-title">🎥 Mock Interview Video</div>
+      <iframe
+        src="https://drive.google.com/file/d/1a02skYD7wwr_eyWZ3NtIirexpxwvdYiy/preview" 
+        width="100%"
+        height="400"
+        allow="autoplay">
+      </iframe>
+    </div>
+
+  </div>
+</div>
+</body>
+</html>
+```
