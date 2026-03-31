@@ -81,7 +81,7 @@
 
 ## 🎥 Mock Interview Video
 
-[▶️ Click here to watch my Mock Interview](./videos/mock_interview.mp4)
+<iframe src="https://drive.google.com/file/d/1a02skYD7wwr_eyWZ3NtIirexpxwvdYiy/view?usp=sharing" width="100%" height="500" allowfullscreen></iframe>
 ```
 
 ---
