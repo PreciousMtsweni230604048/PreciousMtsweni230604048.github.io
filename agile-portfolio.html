@@ -6,44 +6,21 @@
 <title>TradeLoop Agile Portfolio | Precious L Mtsweni</title>
 <meta name="description" content="Agile e-portfolio for TradeLoop, a hyperlocal micro-skill marketplace for Khayelitsha Site C: team charter, user stories, product backlog, sprint backlog and agile logbook, each with a reflection. Project Presentation 3, CPUT, October 2026.">
 <meta name="theme-color" content="#ffffff">
+<link rel="icon" href="data:image/svg+xml,%3Csvg viewBox='60 50 505 610' role='img' aria-label='TradeLoop logo' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath fill='%23ff1a6e' fill-rule='evenodd' d='M290 78Q312 62 334 78L530 205Q545 216 545 236V470Q545 490 530 502L334 628Q312 642 290 628L94 502Q80 490 80 470V236Q80 216 94 205ZM162 268L312 155L465 268V400L312 290L172 405V445H162Z'/%3E%3Crect x='60' y='346' width='105' height='13' fill='%23fff'/%3E%3Crect x='462' y='346' width='105' height='13' fill='%23fff'/%3E%3Crect x='272' y='422' width='80' height='90' fill='%2312101f'/%3E%3Cpath d='M272 512H352L312 548Z' fill='%2312101f'/%3E%3Crect x='352' y='388' width='100' height='104' fill='%23ff1a6e'/%3E%3Cg fill='%23fff'%3E%3Crect x='356' y='394' width='36' height='42' rx='2'/%3E%3Crect x='410' y='394' width='36' height='42' rx='2'/%3E%3Crect x='356' y='446' width='36' height='42' rx='2'/%3E%3Crect x='410' y='446' width='36' height='42' rx='2'/%3E%3C/g%3E%3C/svg%3E">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
-<script>
-/* Apply a saved theme before first paint so the page does not flash. */
-try { var t = localStorage.getItem('tl-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
-</script>
 <style>
-/* ---------- Tokens: TradeLoop palette (dark plum + hot pink) ---------- */
+/* ---------- Tokens: TradeLoop palette on white ---------- */
 :root{
   color-scheme: light;
-  --bg:#faf7fb; --surface:#ffffff; --surface-2:#f4eff8; --reflect:#fdf1f6;
-  --ink:#1c1a2e; --muted:#5f5a78; --line:#e3dcee;
-  --pink:#b80e48;          /* text and borders on light surfaces, 6.2:1 on the page background */
+  --bg:#ffffff; --surface:#ffffff; --surface-2:#f6f3f9; --reflect:#fff5f9;
+  --ink:#1c1a2e; --muted:#4a4560; --line:#d9d2e6;
+  --pink:#b80e48;          /* text and borders on white, 6.5:1 */
   --pink-fill:#e0125c;     /* filled buttons and chips with white text, 4.8:1 */
-  --chip-bg:#fde6ee; --chip-ink:#b80e48;
+  --chip-bg:#fde6ee; --chip-ink:#a50c40;
   --ok-bg:#e3f4ea; --ok-ink:#17663a;
   --focus:#b80e48;
-}
-@media (prefers-color-scheme: dark){
-  :root:not([data-theme="light"]){
-    color-scheme: dark;
-    --bg:#12101f; --surface:#1c1a2e; --surface-2:#24213b; --reflect:#261a33;
-    --ink:#f4f0fa; --muted:#b4aecb; --line:#2e2a4a;
-    --pink:#ff6a9f; --pink-fill:#e0125c;
-    --chip-bg:#3a1730; --chip-ink:#ff8fb3;
-    --ok-bg:#12301f; --ok-ink:#7ddba0;
-    --focus:#ff8fb3;
-  }
-}
-:root[data-theme="dark"]{
-  color-scheme: dark;
-  --bg:#12101f; --surface:#1c1a2e; --surface-2:#24213b; --reflect:#261a33;
-  --ink:#f4f0fa; --muted:#b4aecb; --line:#2e2a4a;
-  --pink:#ff6a9f; --pink-fill:#e0125c;
-  --chip-bg:#3a1730; --chip-ink:#ff8fb3;
-  --ok-bg:#12301f; --ok-ink:#7ddba0;
-  --focus:#ff8fb3;
 }
 
 /* ---------- Base ---------- */
@@ -62,24 +39,22 @@ strong{font-weight:600}
 .skip:focus{left:0}
 
 /* ---------- Header ---------- */
-.hero{position:relative;overflow:hidden;background:#fff;color:#1c1a2e;border-bottom:4px solid #e0125c}
-.hero-in{position:relative;max-width:1180px;margin:0 auto;padding:2.25rem 1.25rem 2rem}
-.hero h1{margin:0;font-size:clamp(2rem,5vw,3rem);line-height:1.1;font-weight:700;letter-spacing:-.01em;color:#1c1a2e}
-.hero .tag{margin:.5rem 0 1.5rem;color:#4a4560;font-size:1.125rem}
-.brand{display:flex;flex-wrap:wrap;align-items:center;gap:1rem 1.5rem;margin:0 0 1.5rem;padding:1.1rem 1.25rem;max-width:62rem;background:#fff;border:1px solid #e3dcee;border-left:5px solid #e0125c;border-radius:12px}
-.brand-logo{display:flex;align-items:center;gap:.8rem}
-.brand-logo svg{width:64px;height:64px;flex:none}
-.brand-name{margin:0;font-size:2rem;font-weight:700;line-height:1.1;color:#1c1a2e;letter-spacing:-.01em}
-.brand-name span{color:#b80e48}
-.brand-punch{margin:.15rem 0 0;font-size:1.05rem;font-weight:600;color:#4a4560}
-.brand-catch{margin:0;font-size:1.25rem;font-weight:700;line-height:1.35;color:#1c1a2e;flex:1 1 16rem}
-.brand-catch span{color:#b80e48}
+.hero{background:#fff;color:var(--ink);border-bottom:4px solid var(--pink-fill)}
+.hero-in{max-width:1180px;margin:0 auto;padding:2.25rem 1.25rem 2rem}
+.brand{display:flex;align-items:center;gap:1rem;margin:0 0 1.5rem}
+.logo{width:4.25rem;height:auto;flex:none;display:block}
+.wordmark{font-weight:700;font-size:2.4rem;line-height:1.05;letter-spacing:-.01em;margin:0;color:var(--ink)}
+.wordmark span{color:var(--pink-fill)}
+.catch{margin:.2rem 0 0;font-weight:600;font-size:1.1rem;color:var(--muted)}
+.hero h1{margin:0;font-size:clamp(2rem,5vw,3rem);line-height:1.1;font-weight:700;letter-spacing:-.01em;color:var(--ink)}
+.punch{margin:.6rem 0 0;font-weight:700;font-size:clamp(1.2rem,3vw,1.5rem);color:var(--ink)}
+.punch span{color:var(--pink)}
+.rule{width:5rem;height:3px;background:var(--pink-fill);border:0;margin:1rem 0 1.5rem}
 .actions{display:flex;flex-wrap:wrap;gap:.6rem}
-.btn{display:inline-block;padding:.55rem 1.05rem;border-radius:999px;border:2px solid #1c1a2e;background:#fff;color:#1c1a2e;font-weight:600;font-size:.95rem;line-height:1.3;font-family:inherit;text-decoration:none;cursor:pointer}
-.btn:hover{background:#f4eff8}
-.btn.primary{background:#e0125c;border-color:#e0125c;color:#fff}
-.btn.primary:hover{background:#b80e48;border-color:#b80e48}
-.hero :focus-visible{outline-color:#b80e48}
+.btn{display:inline-block;padding:.55rem 1.05rem;border-radius:999px;border:2px solid var(--pink);background:#fff;color:var(--pink);font-weight:600;font-size:.95rem;line-height:1.3;font-family:inherit;text-decoration:none;cursor:pointer}
+.btn:hover{background:var(--chip-bg)}
+.btn.primary{background:var(--pink-fill);border-color:var(--pink-fill);color:#fff}
+.btn.primary:hover{background:#c4104f;border-color:#c4104f}
 
 /* ---------- Layout ---------- */
 .shell{max-width:1180px;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:2.5rem}
@@ -181,10 +156,9 @@ footer{border-top:1px solid var(--line);margin-top:1rem;padding:1.5rem 0 2.5rem;
 
 /* ---------- Print ---------- */
 @media print{
-  :root,:root[data-theme="dark"]{--bg:#fff;--surface:#fff;--surface-2:#f4f4f4;--reflect:#fff;--ink:#000;--muted:#333;--line:#bbb;--pink:#8a0a37}
+  :root{--surface-2:#f4f4f4;--reflect:#fff;--ink:#000;--muted:#333;--line:#bbb;--pink:#8a0a37}
   .side,.actions,.skip{display:none}
-  .hero{background:#fff;color:#000;border-bottom:2px solid #000}
-  .hero .tag{color:#333}
+  .hero{border-bottom:2px solid #000}
   .shell{display:block;max-width:none}
   section{border:0;padding:0;break-inside:auto}
   .entry,tr,.reflection{break-inside:avoid}
@@ -197,29 +171,26 @@ footer{border-top:1px solid var(--line);margin-top:1rem;padding:1.5rem 0 2.5rem;
 
 <header class="hero">
   <div class="hero-in">
-    <h1>Agile Portfolio</h1>
-    <p class="tag">The Daily Micro-Skill Marketplace</p>
     <div class="brand">
-      <div class="brand-logo">
-        <svg viewBox="0 0 64 64" role="img" aria-label="TradeLoop logo" xmlns="http://www.w3.org/2000/svg">
-          <path d="M32 5 L55 17.5 V46.5 L32 59 L9 46.5 V17.5 Z" fill="none" stroke="#e0125c" stroke-width="6" stroke-linejoin="round"/>
-          <path d="M32 17 L47 26 V46 H17 V26 Z" fill="#e0125c"/>
-          <rect x="21" y="32" width="9" height="14" rx="1" fill="#1c1a2e"/>
-          <rect x="34" y="31" width="4.5" height="4.5" fill="#fff"/><rect x="40" y="31" width="4.5" height="4.5" fill="#fff"/>
-          <rect x="34" y="37.5" width="4.5" height="4.5" fill="#fff"/><rect x="40" y="37.5" width="4.5" height="4.5" fill="#fff"/>
-        </svg>
-        <div>
-          <p class="brand-name">Trade<span>Loop</span></p>
-          <p class="brand-punch">Local Skills. Real Opportunities.</p>
-        </div>
+      <svg class="logo" viewBox="60 50 505 610" role="img" aria-label="TradeLoop logo" xmlns="http://www.w3.org/2000/svg">
+<path fill="#ff1a6e" fill-rule="evenodd" d="M290 78Q312 62 334 78L530 205Q545 216 545 236V470Q545 490 530 502L334 628Q312 642 290 628L94 502Q80 490 80 470V236Q80 216 94 205ZM162 268L312 155L465 268V400L312 290L172 405V445H162Z"/>
+<rect x="60" y="346" width="105" height="13" fill="#fff"/><rect x="462" y="346" width="105" height="13" fill="#fff"/>
+<rect x="272" y="422" width="80" height="90" fill="#12101f"/><path d="M272 512H352L312 548Z" fill="#12101f"/>
+<rect x="352" y="388" width="100" height="104" fill="#ff1a6e"/>
+<g fill="#fff"><rect x="356" y="394" width="36" height="42" rx="2"/><rect x="410" y="394" width="36" height="42" rx="2"/><rect x="356" y="446" width="36" height="42" rx="2"/><rect x="410" y="446" width="36" height="42" rx="2"/></g>
+</svg>
+      <div>
+        <p class="wordmark">Trade<span>Loop</span></p>
+        <p class="catch">Local Skills. Real Opportunities.</p>
       </div>
-      <p class="brand-catch">Fix Mzansi Today. <span>The TradeLoop Way.</span></p>
     </div>
+    <h1>Agile Portfolio</h1>
+    <p class="punch">Fix Mzansi Today. <span>The TradeLoop Way.</span></p>
+    <hr class="rule">
     <div class="actions">
       <a class="btn primary" href="https://tradeloop.bolt.host">Open the live TradeLoop app</a>
       <a class="btn" href="https://trello.com/b/f6mGgCCQ">View the Trello board</a>
       <a class="btn" href="index.html">Main portfolio</a>
-      <button class="btn" id="theme" type="button">Switch theme</button>
     </div>
   </div>
 </header>
@@ -594,23 +565,6 @@ footer{border-top:1px solid var(--line);margin-top:1rem;padding:1.5rem 0 2.5rem;
 
 <script>
 (function () {
-  var root = document.documentElement;
-  var btn = document.getElementById('theme');
-
-  function current() {
-    var t = root.getAttribute('data-theme');
-    if (t) return t;
-    return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  }
-  function label() { btn.textContent = current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'; }
-  btn.addEventListener('click', function () {
-    var next = current() === 'dark' ? 'light' : 'dark';
-    root.setAttribute('data-theme', next);
-    try { localStorage.setItem('tl-theme', next); } catch (e) {}
-    label();
-  });
-  label();
-
   /* Highlight the section being read in the contents list. */
   var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
   var byId = {};
