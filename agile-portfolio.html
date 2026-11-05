@@ -4,182 +4,625 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>TradeLoop Agile Portfolio | Precious L Mtsweni</title>
+<meta name="description" content="Agile e-portfolio for TradeLoop, a hyperlocal micro-skill marketplace for Khayelitsha Site C: team charter, user stories, product backlog, sprint backlog and agile logbook, each with a reflection. Project Presentation 3, CPUT, October 2026.">
+<meta name="theme-color" content="#1c1a2e">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<script>
+/* Apply a saved theme before first paint so the page does not flash. */
+try { var t = localStorage.getItem('tl-theme'); if (t) document.documentElement.setAttribute('data-theme', t); } catch (e) {}
+</script>
 <style>
-:root{--bg:#faf7fb;--card:#fff;--ink:#1c1a2e;--mute:#5f5a78;--teal:#e0125c;--orange:#ff5c93;--line:#e6dff0;--ph:#fff3a8}
-@media (prefers-color-scheme:dark){:root{--bg:#12101f;--card:#1c1a2e;--ink:#f4f0fa;--mute:#a9a4c0;--teal:#ff1a6b;--orange:#ff5c93;--line:#2e2a4a;--ph:#5c4b00}}
+/* ---------- Tokens: TradeLoop palette (dark plum + hot pink) ---------- */
+:root{
+  color-scheme: light;
+  --bg:#faf7fb; --surface:#ffffff; --surface-2:#f4eff8; --reflect:#fdf1f6;
+  --ink:#1c1a2e; --muted:#5f5a78; --line:#e3dcee;
+  --pink:#b80e48;          /* text and borders on light surfaces, 6.2:1 on the page background */
+  --pink-fill:#e0125c;     /* filled buttons and chips with white text, 4.8:1 */
+  --chip-bg:#fde6ee; --chip-ink:#b80e48;
+  --ok-bg:#e3f4ea; --ok-ink:#17663a;
+  --focus:#b80e48;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    color-scheme: dark;
+    --bg:#12101f; --surface:#1c1a2e; --surface-2:#24213b; --reflect:#261a33;
+    --ink:#f4f0fa; --muted:#b4aecb; --line:#2e2a4a;
+    --pink:#ff6a9f; --pink-fill:#e0125c;
+    --chip-bg:#3a1730; --chip-ink:#ff8fb3;
+    --ok-bg:#12301f; --ok-ink:#7ddba0;
+    --focus:#ff8fb3;
+  }
+}
+:root[data-theme="dark"]{
+  color-scheme: dark;
+  --bg:#12101f; --surface:#1c1a2e; --surface-2:#24213b; --reflect:#261a33;
+  --ink:#f4f0fa; --muted:#b4aecb; --line:#2e2a4a;
+  --pink:#ff6a9f; --pink-fill:#e0125c;
+  --chip-bg:#3a1730; --chip-ink:#ff8fb3;
+  --ok-bg:#12301f; --ok-ink:#7ddba0;
+  --focus:#ff8fb3;
+}
+
+/* ---------- Base ---------- */
 *{box-sizing:border-box}
-body{margin:0;font:16px/1.6 system-ui,Segoe UI,Arial,sans-serif;background:var(--bg);color:var(--ink)}
-header{background:#1c1a2e;color:#fff;padding:2.5rem 1rem;text-align:center;border-bottom:6px solid var(--orange)}
-header h1{margin:0;font-size:2rem}header p{margin:.3rem 0;color:#ffb3cf}
-nav{position:sticky;top:0;background:var(--teal);display:flex;flex-wrap:wrap;justify-content:center;gap:.25rem 1rem;padding:.6rem;z-index:5}
-nav a{color:#fff;text-decoration:none;font-weight:600;font-size:.9rem}
-main{max-width:960px;margin:auto;padding:1rem}
-section{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:1.2rem 1.4rem;margin:1.2rem 0}
-h2{color:var(--teal);margin-top:0;border-bottom:2px solid var(--orange);padding-bottom:.3rem}
-h3{margin-bottom:.3rem}
-.wrap{overflow-x:auto}
-table{border-collapse:collapse;width:100%;font-size:.9rem;margin:.6rem 0}
-th,td{border:1px solid var(--line);padding:.4rem .6rem;text-align:left;vertical-align:top}
-th{background:var(--teal);color:#fff}
-.refl{border-left:5px solid var(--orange);padding:.2rem 1rem;background:rgba(255,111,0,.06)}
-mark{background:var(--ph);color:inherit;padding:0 .2rem;border-radius:3px}
-a{color:var(--teal)}
-footer{text-align:center;color:var(--mute);padding:1.5rem;font-size:.85rem}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+body{margin:0;background:var(--bg);color:var(--ink);font:400 1.0625rem/1.65 "Figtree",system-ui,"Segoe UI",Arial,sans-serif;-webkit-text-size-adjust:100%}
+a{color:var(--pink);text-underline-offset:.15em}
+a:hover{text-decoration-thickness:2px}
+:focus-visible{outline:3px solid var(--focus);outline-offset:2px;border-radius:3px}
+p{margin:.75rem 0;max-width:70ch}
+ul,ol{margin:.75rem 0;padding-left:1.25rem;max-width:70ch}
+li{margin:.3rem 0}
+strong{font-weight:600}
+.skip{position:absolute;left:-999px;top:0;background:var(--pink-fill);color:#fff;padding:.6rem 1rem;z-index:50;border-radius:0 0 6px 0}
+.skip:focus{left:0}
+
+/* ---------- Header ---------- */
+.hero{position:relative;overflow:hidden;background:linear-gradient(135deg,#1c1a2e 0%,#12101f 100%);color:#fff;border-bottom:4px solid #e0125c}
+.hero::after{content:"";position:absolute;right:-90px;top:-110px;width:380px;height:380px;border-radius:50%;border:2px solid rgba(255,106,159,.28);box-shadow:inset 0 0 0 28px rgba(255,106,159,.05);pointer-events:none}
+.hero-in{position:relative;max-width:1180px;margin:0 auto;padding:2.25rem 1.25rem 2rem}
+.wordmark{font-weight:700;font-size:1.15rem;letter-spacing:.01em;margin:0 0 .75rem}
+.wordmark span{color:#ff6a9f}
+.hero h1{margin:0;font-size:clamp(2rem,5vw,3rem);line-height:1.1;font-weight:700;letter-spacing:-.01em}
+.hero .tag{margin:.5rem 0 1.5rem;color:#d9d3ec;font-size:1.125rem}
+.id{display:grid;grid-template-columns:repeat(auto-fit,minmax(15rem,1fr));gap:.9rem 2rem;margin:0 0 1.5rem;max-width:62rem}
+.id div{min-width:0}
+.id dt{color:#b4aecb;font-size:.875rem}
+.id dd{margin:0;font-weight:500}
+.actions{display:flex;flex-wrap:wrap;gap:.6rem}
+.btn{display:inline-block;padding:.55rem 1.05rem;border-radius:999px;border:1px solid rgba(255,255,255,.4);background:transparent;color:#fff;font-weight:600;font-size:.95rem;line-height:1.3;font-family:inherit;text-decoration:none;cursor:pointer}
+.btn:hover{background:rgba(255,255,255,.12)}
+.btn.primary{background:#e0125c;border-color:#e0125c}
+.btn.primary:hover{background:#c4104f}
+.hero :focus-visible{outline-color:#ff8fb3}
+
+/* ---------- Layout ---------- */
+.shell{max-width:1180px;margin:0 auto;padding:0 1.25rem;display:grid;grid-template-columns:15rem minmax(0,1fr);gap:2.5rem}
+.side{position:sticky;top:0;align-self:start;max-height:100vh;overflow:auto;padding:1.75rem 0}
+.side h2{font-size:.95rem;margin:0 0 .6rem;color:var(--muted);font-weight:600}
+.toc ul{list-style:none;margin:0;padding:0}
+.toc li{margin:0}
+.toc a{display:block;padding:.4rem .75rem;border-left:3px solid var(--line);color:var(--ink);text-decoration:none;font-size:.98rem;line-height:1.35}
+.toc a:hover{background:var(--surface-2)}
+.toc a[aria-current="true"]{border-left-color:var(--pink-fill);font-weight:600;background:var(--surface-2)}
+.toc .home a{color:var(--muted)}
+main{padding:1.75rem 0 3rem;min-width:0}
+
+/* ---------- Sections ---------- */
+section{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:1.6rem 1.75rem;margin:0 0 1.75rem;scroll-margin-top:1rem}
+section h2{margin:0 0 .25rem;font-size:1.65rem;line-height:1.25;font-weight:700}
+.lede{color:var(--muted);margin:.25rem 0 1rem}
+h3{font-size:1.15rem;line-height:1.35;margin:1.6rem 0 .5rem;font-weight:700;scroll-margin-top:1rem}
+.ev-h{padding-bottom:.35rem;border-bottom:2px solid var(--pink-fill);margin-top:1.5rem}
+.sub{font-weight:600;margin:1.1rem 0 .2rem}
+
+/* ---------- Tables ---------- */
+.wrap{overflow-x:auto;margin:.9rem 0;border:1px solid var(--line);border-radius:8px}
+.wrap:focus-visible{outline-offset:0}
+table{border-collapse:collapse;width:100%;font-size:.95rem;line-height:1.5}
+caption{text-align:left;padding:.6rem .8rem;color:var(--muted);font-size:.9rem;caption-side:top}
+th,td{padding:.6rem .8rem;text-align:left;vertical-align:top;border-top:1px solid var(--line)}
+thead th{background:var(--surface-2);border-top:0;border-bottom:2px solid var(--pink-fill);font-weight:600;white-space:nowrap}
+tbody tr:nth-child(even){background:color-mix(in srgb,var(--surface-2) 45%,transparent)}
+tfoot td{font-weight:600;background:var(--surface-2)}
+td ul{margin:0;padding-left:1.1rem}
+td li{margin:.1rem 0}
+.num{text-align:right;white-space:nowrap}
+
+/* ---------- Chips ---------- */
+.chip{display:inline-block;padding:.1rem .6rem;border-radius:999px;font-size:.85rem;font-weight:600;line-height:1.5;white-space:nowrap}
+.chip.must{background:var(--pink-fill);color:#fff}
+.chip.should{background:var(--chip-bg);color:var(--chip-ink)}
+.chip.could{border:1px solid var(--line);color:var(--muted)}
+.chip.done{background:var(--ok-bg);color:var(--ok-ink)}
+.chip.carry{background:var(--chip-bg);color:var(--chip-ink)}
+.chip.type{background:var(--surface-2);color:var(--ink)}
+
+/* ---------- Panels ---------- */
+.reflection{background:var(--reflect);border:1px solid var(--line);border-left:5px solid var(--pink-fill);border-radius:8px;padding:.25rem 1.25rem 1rem;margin-top:1.5rem}
+.reflection h3{margin-top:1rem}
+.reflection p{margin:.7rem 0}
+.callout{background:var(--surface-2);border-left:4px solid var(--pink-fill);border-radius:6px;padding:.1rem 1rem;margin:1rem 0}
+.vision{margin:.9rem 0;padding:.1rem 1rem;border-left:4px solid var(--line);color:var(--ink)}
+.facts{display:grid;grid-template-columns:repeat(auto-fit,minmax(11rem,1fr));gap:.75rem;margin:1rem 0;padding:0;list-style:none;max-width:none}
+.facts li{margin:0;background:var(--surface-2);border-radius:8px;padding:.7rem .9rem}
+.facts b{display:block;font-size:1.25rem;line-height:1.3}
+.facts span{color:var(--muted);font-size:.9rem}
+.values{list-style:none;padding:0}
+.values li{padding:.5rem .9rem;border-left:3px solid var(--line);margin:.4rem 0}
+.steps{list-style:none;padding:0;display:grid;gap:.6rem}
+.steps li{margin:0;padding:.7rem .9rem;background:var(--surface-2);border-radius:8px}
+figure{margin:1rem 0}
+figure img{display:block;max-width:100%;height:auto;border:1px solid var(--line);border-radius:8px}
+figcaption{color:var(--muted);font-size:.9rem;margin-top:.4rem}
+
+/* ---------- Logbook entries ---------- */
+.entry{border:1px solid var(--line);border-radius:8px;padding:.8rem 1rem;margin:.8rem 0;background:var(--surface)}
+.entry header{display:flex;flex-wrap:wrap;gap:.5rem .75rem;align-items:center;margin-bottom:.3rem}
+.entry time{font-weight:700}
+.entry dl{margin:.4rem 0 0;display:grid;grid-template-columns:7.5rem minmax(0,1fr);gap:.35rem 1rem}
+.entry dt{font-weight:600;color:var(--muted)}
+.entry dd{margin:0}
+
+/* ---------- Agile loop and timeline ---------- */
+.loop{list-style:none;margin:1rem 0 0;padding:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:.6rem;max-width:none;counter-reset:l}
+.loop li{margin:0;counter-increment:l;position:relative;background:var(--surface-2);border:1px solid var(--line);border-radius:8px;padding:.6rem .7rem;font-weight:600;font-size:.95rem;line-height:1.35}
+.loop li::before{content:counter(l);display:inline-grid;place-items:center;width:1.5rem;height:1.5rem;margin-right:.45rem;border-radius:50%;background:var(--pink-fill);color:#fff;font-size:.8rem}
+.loop-back{margin:.4rem 0 1rem;padding:.5rem .75rem;border:2px solid var(--pink-fill);border-top:0;border-radius:0 0 10px 10px;text-align:center;color:var(--muted);font-size:.92rem}
+.timeline{list-style:none;margin:1rem 0;padding:0 0 0 1rem;border-left:3px solid var(--line);max-width:none}
+.timeline li{position:relative;margin:0 0 .9rem;padding-left:1rem}
+.timeline li::before{content:"";position:absolute;left:-1.55rem;top:.55rem;width:.75rem;height:.75rem;border-radius:50%;background:var(--pink-fill);border:2px solid var(--surface)}
+.timeline time{display:block;font-weight:700}
+.refs p{padding-left:2rem;text-indent:-2rem;max-width:80ch;overflow-wrap:anywhere}
+
+footer{border-top:1px solid var(--line);margin-top:1rem;padding:1.5rem 0 2.5rem;text-align:left;color:var(--muted);font-size:.92rem}
+.back{display:inline-block;margin-top:1rem;font-size:.92rem}
+
+/* ---------- Responsive ---------- */
+@media (max-width:900px){
+  .shell{display:block;padding:0 1rem}
+  .side{position:sticky;top:0;z-index:20;max-height:none;overflow:visible;margin:0 -1rem;padding:.4rem 1rem;background:var(--surface);border-bottom:1px solid var(--line)}
+  .side h2{display:none}
+  .toc ul{display:flex;gap:.25rem;overflow-x:auto;padding-bottom:.2rem}
+  .toc a{white-space:nowrap;border-left:0;border-bottom:3px solid transparent;padding:.45rem .6rem}
+  .toc a[aria-current="true"]{border-bottom-color:var(--pink-fill);background:transparent}
+  section{padding:1.2rem 1.05rem;scroll-margin-top:4rem}
+  h3{scroll-margin-top:4rem}
+  .loop{grid-template-columns:1fr}
+  .loop-back{border:0;border-left:3px solid var(--pink-fill);border-radius:0;text-align:left}
+  .entry dl{grid-template-columns:1fr;gap:.1rem}
+  .entry dt{margin-top:.4rem}
+}
+
+/* ---------- Print ---------- */
+@media print{
+  :root,:root[data-theme="dark"]{--bg:#fff;--surface:#fff;--surface-2:#f4f4f4;--reflect:#fff;--ink:#000;--muted:#333;--line:#bbb;--pink:#8a0a37}
+  .side,.actions,.skip{display:none}
+  .hero{background:#fff;color:#000;border-bottom:2px solid #000}
+  .hero::after{display:none}
+  .hero .tag,.id dt{color:#333}
+  .shell{display:block;max-width:none}
+  section{border:0;padding:0;break-inside:auto}
+  .entry,tr,.reflection{break-inside:avoid}
+  a{color:#000;text-decoration:underline}
+}
 </style>
 </head>
 <body>
-<header>
-<h1>TradeLoop: Agile Portfolio</h1>
-<p><em>The Daily Micro-Skill Marketplace</em></p>
-<p>Precious L Mtsweni | 230604048 | Diploma in ICT (Final Year) | Cape Peninsula University of Technology</p>
-<p>Project Presentation 3 (PRP370S / PRP371S / PRP372S) | October 2026</p>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="hero">
+  <div class="hero-in">
+    <p class="wordmark">Trade<span>Loop</span></p>
+    <h1>Agile Portfolio</h1>
+    <p class="tag">The Daily Micro-Skill Marketplace</p>
+    <dl class="id">
+      <div><dt>Student</dt><dd>Precious L Mtsweni (230604048)</dd></div>
+      <div><dt>Qualification</dt><dd>Diploma in Information and Communication Technology, final year</dd></div>
+      <div><dt>Institution</dt><dd>Cape Peninsula University of Technology, Faculty of Informatics and Design</dd></div>
+      <div><dt>Subject</dt><dd>Project Presentation 3 (PRP370S / PRP371S / PRP372S)</dd></div>
+      <div><dt>Assessment window</dt><dd>20 to 27 October 2026</dd></div>
+      <div><dt>Team</dt><dd>TradeLoop, Group 6 (reflections are my own work)</dd></div>
+    </dl>
+    <div class="actions">
+      <a class="btn primary" href="https://tradeloop.bolt.host">Open the live TradeLoop app</a>
+      <a class="btn" href="https://trello.com/b/f6mGgCCQ">View the Trello board</a>
+      <a class="btn" href="index.html">Main portfolio</a>
+      <button class="btn" id="theme" type="button">Switch theme</button>
+    </div>
+  </div>
 </header>
-<nav>
-<a href="index.html">&larr; Main Portfolio</a><a href="#about">About</a><a href="#charter">1. Team Charter</a><a href="#stories">2. User Stories</a><a href="#product">3. Product Backlog</a><a href="#sprint">4. Sprint Backlog</a><a href="#logbook">5. Agile Logbook</a><a href="#connect">Connect</a>
-</nav>
-<main>
 
+<div class="shell">
+  <nav class="side toc" aria-label="Portfolio sections">
+    <h2>On this page</h2>
+    <ul>
+      <li><a href="#about">About this portfolio</a></li>
+      <li><a href="#charter">1. Agile team charter</a></li>
+      <li><a href="#stories">2. User stories and tasks</a></li>
+      <li><a href="#product">3. Product backlog</a></li>
+      <li><a href="#sprint">4. Sprint backlog</a></li>
+      <li><a href="#logbook">5. Agile logbook</a></li>
+      <li><a href="#connect">Connect</a></li>
+      <li><a href="#references">References</a></li>
+      <li class="home"><a href="index.html">Back to main portfolio</a></li>
+    </ul>
+  </nav>
+
+  <main id="main">
+
+<!-- ====================== ABOUT ====================== -->
 <section id="about">
-<h2>About this portfolio</h2>
-<p>This page extends my existing digital portfolio. It follows the four steps of an e-portfolio: <strong>Collect</strong> (gather artefacts), <strong>Select</strong> (choose the strongest evidence), <strong>Reflect</strong> (explain what I learned) and <strong>Connect</strong> (link everything together). The business idea is <strong>TradeLoop</strong>, a hyperlocal, Android-first, low-data marketplace that connects households in Khayelitsha Site C with verified, rated local workers for small jobs.</p>
-<h3>Supporting evidence from earlier work</h3>
-<ul>
-<li><a href="documents/TradeLoop_Group6_Deliverable1.pdf">Deliverable 1: Community Problem + Opportunity Validation</a> (survey of 21 residents, 10–12 March 2026)</li>
-<li><a href="documents/TradeLoop_Group6_Deliverable2.docx">Deliverable 2: Marketing Strategy, Feasibility and MVP</a> (24 May 2026)</li>
-<li><a href="https://zesty-heliotrope-a0870f.netlify.app/">Interactive TradeLoop prototype</a></li>
-<li><a href="images/trello-board.png">Trello board screenshot</a> | <a href="https://trello.com/b/f6mGgCCQ">Live Trello board</a></li>
-</ul>
-<p>Note: the group work in Professional Practice 3 is used as source material. The reflections on this page are my own individual work.</p>
+  <h2>About this portfolio</h2>
+  <p class="lede">What it is, how to read it, and where each marking criterion is.</p>
+  <p>This page extends my existing digital portfolio. It follows the four steps of an e-portfolio: <strong>Collect</strong> (gather artefacts), <strong>Select</strong> (choose the strongest evidence), <strong>Reflect</strong> (explain what I learned) and <strong>Connect</strong> (link everything together). The business idea is <strong>TradeLoop</strong>, a hyperlocal, Android-first, low-data marketplace that connects households in Khayelitsha Site C with verified, rated local workers for small jobs. We built it first as a web application.</p>
+  <p>The page draws on household-services and labour-force data (Ipsos South Africa, 2023; Statistics South Africa, 2024) and on our own community survey of 21 residents (TradeLoop Group, 2026b).</p>
+
+  <h3>How the four steps appear on this page</h3>
+  <ul class="steps">
+    <li><strong>Collect.</strong> The artefacts are listed below and shown as the evidence in each section.</li>
+    <li><strong>Select.</strong> Each reflection starts with why I chose that evidence.</li>
+    <li><strong>Reflect.</strong> Each reflection says what I learned and what I would change.</li>
+    <li><strong>Connect.</strong> Each reflection ends with how it links to the next artefact, and the Connect section pulls everything together.</li>
+  </ul>
+
+  <h3 id="rubric-map">Where to find each marking criterion</h3>
+  <div class="wrap" role="region" aria-label="Marking criteria map" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Criterion</th><th scope="col">Evidence (10%)</th><th scope="col">Reflection (10%)</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Agile team charter</th><td><a href="#charter-evidence">Go to evidence</a></td><td><a href="#charter-reflection">Go to reflection</a></td></tr>
+        <tr><th scope="row">User stories and tasks</th><td><a href="#stories-evidence">Go to evidence</a></td><td><a href="#stories-reflection">Go to reflection</a></td></tr>
+        <tr><th scope="row">Product backlog</th><td><a href="#product-evidence">Go to evidence</a></td><td><a href="#product-reflection">Go to reflection</a></td></tr>
+        <tr><th scope="row">Sprint backlog</th><td><a href="#sprint-evidence">Go to evidence</a></td><td><a href="#sprint-reflection">Go to reflection</a></td></tr>
+        <tr><th scope="row">Agile logbook</th><td><a href="#logbook-evidence">Go to evidence</a></td><td><a href="#logbook-reflection">Go to reflection</a></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h3>Collect: supporting evidence from earlier work</h3>
+  <div class="wrap" role="region" aria-label="Supporting artefacts" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Artefact</th><th scope="col">Format</th><th scope="col">Date</th><th scope="col">Used in</th></tr></thead>
+      <tbody>
+        <tr><td><a href="documents/TradeLoop_Group6_Deliverable1.pdf">Deliverable 1: Community Problem + Opportunity Validation</a></td><td><span class="chip type">PDF</span></td><td>Survey of 21 residents, 10 to 12 March 2026</td><td>User stories</td></tr>
+        <tr><td><a href="documents/TradeLoop_Group6_Deliverable2.docx">Deliverable 2: Marketing Strategy, Feasibility and MVP</a></td><td><span class="chip type">Word</span></td><td>24 May 2026</td><td>Product backlog, sprint backlog</td></tr>
+        <tr><td><a href="https://zesty-heliotrope-a0870f.netlify.app/">Interactive TradeLoop prototype</a></td><td><span class="chip type">Website</span></td><td>2026</td><td>Logbook</td></tr>
+        <tr><td><a href="https://tradeloop.bolt.host">Live TradeLoop web app</a></td><td><span class="chip type">Web app</span></td><td>2026</td><td>Product backlog, logbook</td></tr>
+        <tr><td><a href="images/trello-board.png">Trello board screenshot</a> and <a href="https://trello.com/b/f6mGgCCQ">live Trello board</a></td><td><span class="chip type">Image and board</span></td><td>4 May to 26 October 2026</td><td>Sprint backlog, logbook</td></tr>
+      </tbody>
+    </table>
+  </div>
+  <p>The group work in Professional Practice 3 is used as source material. The reflections on this page are my own individual work.</p>
 </section>
 
+<!-- ====================== 1. CHARTER ====================== -->
 <section id="charter">
-<h2>1. Agile Team Charter</h2>
-<h3>Evidence</h3>
-<p><strong>Team:</strong> TradeLoop Team (Group 6) &nbsp;|&nbsp; <strong>Product:</strong> TradeLoop, The Daily Micro-Skill Marketplace</p>
-<p><strong>Shared purpose:</strong> To help Khayelitsha households find trusted local workers quickly, and to give informally skilled workers a steady, fair way to earn.</p>
-<p><strong>Product vision:</strong> For skilled workers and households in underserved communities who struggle to find trusted, affordable help for everyday tasks, TradeLoop is a real-time, verified, hyperlocal marketplace that delivers daily income and trusted help with zero friction.</p>
-<div class="wrap"><table>
-<tr><th>Team member</th><th>Project role</th><th>Agile role</th><th>Responsibility</th></tr>
-<tr><td>Precious L Mtsweni</td><td>Team Leader / Presenter</td><td>Product Owner and Scrum Master</td><td>Owns priorities, runs stand-ups, manages deadlines, prepares demos</td></tr>
-<tr><td>Ntombenhle Majali</td><td>Writer / Editor</td><td>Team Member</td><td>Documentation, editing, referencing</td></tr>
-<tr><td>Stephan Hendricks</td><td>Designer</td><td>Team Member</td><td>Branding, visuals, layout, prototype look and feel</td></tr>
-<tr><td>Everyone</td><td>Researcher</td><td>Team Members</td><td>Survey design, data collection, worker recruitment</td></tr>
-</table></div>
-<p><strong>Team values:</strong> Trust (we protect households and workers) · Community first (decisions start with Khayelitsha users) · Transparency (we share progress and blockers) · Respect (every idea is heard) · Accountability (we deliver what we commit to).</p>
-<p><strong>Working agreements:</strong></p>
-<ul>
-<li>One-week sprints with planning at the start and a review and retrospective at the end.</li>
-<li>Short stand-ups Tuesday to Friday on WhatsApp, with extra check-ins on weekends when there was a lot to do, calls when needed, and in person on presentation days: What did I do? What will I do? What is blocking me?</li>
-<li>Tasks tracked on Trello and updated the same day; files saved to GitHub.</li>
-<li>Replies to team messages within 24 hours.</li>
-</ul>
-<p><strong>Definition of Done:</strong> a task is done when it is completed, checked by a teammate, and saved or uploaded to the shared folder or GitHub.</p>
-<p><strong>Boundaries and conflict resolution:</strong> work is only assigned after agreement in planning; disagreements are raised at the stand-up first, then decided by the Product Owner; missed deadlines are reported early.</p>
-<h3>Reflection</h3>
-<div class="refl">
-<p>Writing the charter showed me that a team needs shared rules before any work begins. For TradeLoop, stating our purpose and values kept us focused on helping Khayelitsha residents and workers, not just producing documents. I chose it as evidence because it shows how we organised ourselves across Deliverable 1 and Deliverable 2, with a clear split between research, writing, design and presenting. When we had to choose between building a mobile app and a web application, we disagreed. We chose the web application because it gave us many free resources we could use. Settling it by comparing resources rather than preferences is a habit I will keep. Next time I would agree our working agreements in the first meeting and review them each sprint. The charter links to everything that follows, because it defines who owns the backlog, how we hold stand-ups and what counts as done.</p>
-</div>
+  <h2>1. Agile team charter</h2>
+  <p class="lede">The team's agreement on purpose, values, working rules and boundaries.</p>
+
+  <h3 class="ev-h" id="charter-evidence">Evidence</h3>
+  <p><strong>Team:</strong> TradeLoop Team (Group 6). <strong>Product:</strong> TradeLoop, The Daily Micro-Skill Marketplace.</p>
+  <p><strong>Shared purpose:</strong> to help Khayelitsha households find trusted local workers quickly, and to give informally skilled workers a steady, fair way to earn.</p>
+  <p><strong>Product vision:</strong></p>
+  <blockquote class="vision">For skilled workers and households in underserved communities who struggle to find trusted, affordable help for everyday tasks, TradeLoop is a real-time, verified, hyperlocal marketplace that delivers daily income and trusted help with zero friction.</blockquote>
+
+  <p class="sub">Roles</p>
+  <div class="wrap" role="region" aria-label="Team roles" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Team member</th><th scope="col">Project role</th><th scope="col">Agile role</th><th scope="col">Responsibility</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">Precious L Mtsweni</th><td>Team Leader / Presenter</td><td>Product Owner and Scrum Master</td><td>Owns priorities, runs stand-ups, manages deadlines, prepares demos</td></tr>
+        <tr><th scope="row">Ntombenhle Majali</th><td>Writer / Editor</td><td>Team Member</td><td>Documentation, editing, referencing</td></tr>
+        <tr><th scope="row">Stephan Hendricks</th><td>Designer</td><td>Team Member</td><td>Branding, visuals, layout, prototype look and feel</td></tr>
+        <tr><th scope="row">Everyone</th><td>Researcher</td><td>Team Members</td><td>Survey design, data collection, worker recruitment</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <p class="sub">Team values</p>
+  <ul class="values">
+    <li><strong>Trust.</strong> We protect households and workers.</li>
+    <li><strong>Community first.</strong> Decisions start with Khayelitsha users.</li>
+    <li><strong>Transparency.</strong> We share progress and blockers.</li>
+    <li><strong>Respect.</strong> Every idea is heard.</li>
+    <li><strong>Accountability.</strong> We deliver what we commit to.</li>
+  </ul>
+
+  <p class="sub">Working agreements</p>
+  <ul>
+    <li>One-week sprints, with planning at the start and a review and retrospective at the end.</li>
+    <li>Short stand-ups Tuesday to Friday on WhatsApp, with extra check-ins on weekends when there was a lot to do, calls when needed, and in person on presentation days. Each person answers three questions: What did I do? What will I do? What is blocking me?</li>
+    <li>Tasks are tracked on Trello and updated the same day. Files are saved to GitHub.</li>
+    <li>Team messages get a reply within 24 hours.</li>
+  </ul>
+
+  <p class="sub">Definition of Done</p>
+  <p>A task is done when it is completed, checked by a teammate, and saved or uploaded to the shared folder or GitHub.</p>
+
+  <p class="sub">Boundaries and conflict resolution</p>
+  <p>Work is only assigned after agreement in planning. Disagreements are raised at the stand-up first, then decided by the Product Owner. Missed deadlines are reported early.</p>
+
+  <div class="reflection">
+    <h3 id="charter-reflection">Reflection</h3>
+    <p><strong>Why I chose this evidence.</strong> The charter is the first artefact we made, and everything else depends on it. It names who owns the backlog, how we run stand-ups and what counts as done. It also shows how we split research, writing, design and presenting across Deliverable 1 and Deliverable 2.</p>
+    <p><strong>What I learned.</strong> A team needs shared rules before any work begins. Stating our purpose and values kept us focused on helping Khayelitsha residents and workers, not only on producing documents. This matches the Agile value of putting individuals and interactions before processes and tools (Beck <em>et al.</em>, 2001). When we disagreed about building a mobile app or a web application, we settled it by comparing the free resources each option gave us, not by preference. We chose the web application. I will keep that habit of deciding on evidence.</p>
+    <p><strong>What I would do differently.</strong> I would agree the working agreements in the first meeting and review them every sprint. I also held both the Product Owner and Scrum Master roles. The Scrum Guide treats these as separate accountabilities (Schwaber and Sutherland, 2020), so in a larger team I would share them, so that the person who sets priorities is not also the one checking the process.</p>
+    <p><strong>How it connects.</strong> The charter sets the rules for the user stories, the two backlogs and the logbook that follow.</p>
+  </div>
 </section>
 
+<!-- ====================== 2. USER STORIES ====================== -->
 <section id="stories">
-<h2>2. User Stories and Tasks</h2>
-<h3>Evidence</h3>
-<p>Each story is written from the end user’s view and is based on the survey: worker verification (43%) and community ratings (33%) were the most valued features, and 62% of respondents took more than an hour to find help.</p>
-<div class="wrap"><table>
-<tr><th>ID</th><th>User story</th><th>Tasks</th></tr>
-<tr><td>US1</td><td>As a household member, I want to post a small job with a budget and time, so that I can get help quickly.</td><td>Design job form · Build form screen · Test with 3 users</td></tr>
-<tr><td>US2</td><td>As a household member, I want to see a worker’s verified ID, badges and ratings, so that I can trust who enters my home.</td><td>Define verification checklist · Design profile screen · Build rating display</td></tr>
-<tr><td>US3</td><td>As a worker, I want to create a verified profile with my skills and photo, so that I look like a professional and get more jobs.</td><td>Create Google Form sign-up · Collect ID and photo · Verify manually</td></tr>
-<tr><td>US4</td><td>As a worker, I want to see nearby jobs and claim one, so that I can earn on days I would have no work.</td><td>Design job feed · Add location filter · Add claim button</td></tr>
-<tr><td>US5</td><td>As a household member, I want my payment held until the job is done, so that I am protected if the work is poor.</td><td>Research PayFast/Peach escrow · Design payment flow · Write dispute steps</td></tr>
-<tr><td>US6</td><td>As a user with limited data, I want a low-data mode, so that I can use the app without spending my airtime.</td><td>Compress images · Create text-only view · Test on older Android phone</td></tr>
-<tr><td>US7</td><td>As a household member or worker, I want to rate the other person after a job, so that the community stays accountable.</td><td>Design two-way review · Build rating screen · Add review history</td></tr>
-<tr><td>US8</td><td>As an isiXhosa speaker, I want the app in my language, so that I can use it with confidence.</td><td>Translate key screens · Review with a community member</td></tr>
-</table></div>
-<h3>Reflection</h3>
-<div class="refl">
-<p>Writing user stories forced me to think about TradeLoop from the point of view of people like our personas, Nomsa and Lungelo, rather than from a developer’s point of view. I chose these eight stories because they came straight from our survey results, so each one can be defended with data. Breaking each story into small tasks made the work easier to share between team members. The hardest part was that one story needed more tasks on the website than on mobile: the trade request flow had extra steps, and the mobile navigation did not carry over to a desktop layout, so we rethought it from scratch. I learned that a good story says <em>why</em> a feature matters, not just what it is. These stories feed directly into the product backlog, where I prioritised them.</p>
-</div>
+  <h2>2. User stories and tasks</h2>
+  <p class="lede">What users need, written from their point of view and broken into tasks.</p>
+
+  <h3 class="ev-h" id="stories-evidence">Evidence</h3>
+  <p>Each story is written from the end user's view, using the "As a ... I want ... so that ..." format (Cohn, 2004). The stories are based on our community survey of 21 residents (TradeLoop Group, 2026b):</p>
+  <ul class="facts">
+    <li><b>43%</b><span>valued worker verification most</span></li>
+    <li><b>33%</b><span>valued community ratings</span></li>
+    <li><b>62%</b><span>took more than an hour to find help</span></li>
+  </ul>
+  <div class="wrap" role="region" aria-label="User stories and tasks" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">ID</th><th scope="col">User story</th><th scope="col">Tasks</th></tr></thead>
+      <tbody>
+        <tr><th scope="row">US1</th><td>As a household member, I want to post a small job with a budget and time, so that I can get help quickly.</td><td><ul><li>Design job form</li><li>Build form screen</li><li>Test with 3 users</li></ul></td></tr>
+        <tr><th scope="row">US2</th><td>As a household member, I want to see a worker's verified ID, badges and ratings, so that I can trust who enters my home.</td><td><ul><li>Define verification checklist</li><li>Design profile screen</li><li>Build rating display</li></ul></td></tr>
+        <tr><th scope="row">US3</th><td>As a worker, I want to create a verified profile with my skills and photo, so that I look like a professional and get more jobs.</td><td><ul><li>Create Google Form sign-up</li><li>Collect ID and photo</li><li>Verify manually</li></ul></td></tr>
+        <tr><th scope="row">US4</th><td>As a worker, I want to see nearby jobs and claim one, so that I can earn on days I would have no work.</td><td><ul><li>Design job feed</li><li>Add location filter</li><li>Add claim button</li></ul></td></tr>
+        <tr><th scope="row">US5</th><td>As a household member, I want my payment held until the job is done, so that I am protected if the work is poor.</td><td><ul><li>Research PayFast/Peach escrow</li><li>Design payment flow</li><li>Write dispute steps</li></ul></td></tr>
+        <tr><th scope="row">US6</th><td>As a user with limited data, I want a low-data mode, so that I can use the app without spending my airtime.</td><td><ul><li>Compress images</li><li>Create text-only view</li><li>Test on older Android phone</li></ul></td></tr>
+        <tr><th scope="row">US7</th><td>As a household member or worker, I want to rate the other person after a job, so that the community stays accountable.</td><td><ul><li>Design two-way review</li><li>Build rating screen</li><li>Add review history</li></ul></td></tr>
+        <tr><th scope="row">US8</th><td>As an isiXhosa speaker, I want the app in my language, so that I can use it with confidence.</td><td><ul><li>Translate key screens</li><li>Review with a community member</li></ul></td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="reflection">
+    <h3 id="stories-reflection">Reflection</h3>
+    <p><strong>Why I chose this evidence.</strong> I chose these eight stories because they came straight from our survey results, so each one can be defended with data (TradeLoop Group, 2026b).</p>
+    <p><strong>What I learned.</strong> Writing user stories forced me to think about TradeLoop from the point of view of our personas, Nomsa and Lungelo, and not from a developer's point of view. A good story says <em>why</em> a feature matters, not only what it is, and the "so that" part is where that happens (Cohn, 2004). Breaking each story into small tasks made the work easier to share between team members. The hardest part was that one story needed more tasks on the website than on mobile. The trade request flow had extra steps, and the mobile navigation did not carry over to a desktop layout, so we rethought it from scratch.</p>
+    <p><strong>What I would do differently.</strong> I would add a short acceptance check to each story, so the team knows exactly how to test that it works before calling it done.</p>
+    <p><strong>How it connects.</strong> These stories feed directly into the product backlog, where I prioritised them.</p>
+  </div>
 </section>
 
+<!-- ====================== 3. PRODUCT BACKLOG ====================== -->
 <section id="product">
-<h2>3. Product Backlog</h2>
-<h3>Evidence</h3>
-<p>Prioritised using MoSCoW (Must, Should, Could). Effort is in story points (1 = very small, 8 = large).</p>
-<div class="wrap"><table>
-<tr><th>#</th><th>Item</th><th>Story</th><th>Priority</th><th>Points</th><th>Sprint</th></tr>
-<tr><td>1</td><td>Worker sign-up form and manual verification</td><td>US3</td><td>Must</td><td>5</td><td>1</td></tr>
-<tr><td>2</td><td>Consumer WhatsApp flyer (isiXhosa and English)</td><td>US1, US8</td><td>Must</td><td>3</td><td>1</td></tr>
-<tr><td>3</td><td>Worker profile with ID badge and rating</td><td>US2</td><td>Must</td><td>5</td><td>2</td></tr>
-<tr><td>4</td><td>Post-a-job form</td><td>US1</td><td>Must</td><td>5</td><td>2</td></tr>
-<tr><td>5</td><td>Manual matching process and feedback form</td><td>US4</td><td>Must</td><td>3</td><td>2</td></tr>
-<tr><td>6</td><td>Two-way ratings and reviews</td><td>US7</td><td>Should</td><td>5</td><td>3</td></tr>
-<tr><td>7</td><td>Job feed with location filter</td><td>US4</td><td>Should</td><td>8</td><td>3</td></tr>
-<tr><td>8</td><td>Low-data mode</td><td>US6</td><td>Should</td><td>5</td><td>4</td></tr>
-<tr><td>9</td><td>In-app escrow payment</td><td>US5</td><td>Should</td><td>8</td><td>4</td></tr>
-<tr><td>10</td><td>isiXhosa language support</td><td>US8</td><td>Could</td><td>3</td><td>4</td></tr>
-<tr><td>11</td><td>Verified badge subscription (R99/month)</td><td>US3</td><td>Could</td><td>5</td><td>Later</td></tr>
-<tr><td>12</td><td>Business bundles for recurring tasks</td><td>US1</td><td>Could</td><td>8</td><td>Later</td></tr>
-</table></div>
-<p><em>Priority logic:</em> the supply side comes first, because Deliverable 2 identified the chicken-and-egg problem and planned to sign up 20–30 verified workers before opening to consumers.</p>
-<h3>Reflection</h3>
-<div class="refl">
-<p>Prioritising the backlog was harder than writing it, because every feature felt important. I used our survey and our feasibility risks to decide: trust features and worker recruitment are Must-haves, while subscriptions and business bundles can wait. I chose this backlog as evidence because it shows decision-making, not just a list. The biggest trade-off was web application versus mobile app. We chose the web application for its free resources, which moved the Android build down the backlog. We then put real payment and escrow and real ID and skill verification into Sprint 8, because trust was what our survey said matters most. I learned that a backlog is a living document that changes as we learn. It connects to my sprint backlog, which takes the top items for the first sprint.</p>
-</div>
+  <h2>3. Product backlog</h2>
+  <p class="lede">Every item the product needs, in priority order.</p>
+
+  <h3 class="ev-h" id="product-evidence">Evidence</h3>
+  <p>The backlog is prioritised with MoSCoW: Must, Should and Could (Agile Business Consortium, no date). Effort is in story points, from 1 (very small) to 8 (large). It holds 12 items worth 63 points: Must 21, Should 26 and Could 16.</p>
+  <div class="wrap" role="region" aria-label="Product backlog" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">#</th><th scope="col">Item</th><th scope="col">Story</th><th scope="col">Priority</th><th scope="col" class="num">Points</th><th scope="col">Sprint</th></tr></thead>
+      <tbody>
+        <tr><td>1</td><td>Worker sign-up form and manual verification</td><td>US3</td><td><span class="chip must">Must</span></td><td class="num">5</td><td>1</td></tr>
+        <tr><td>2</td><td>Consumer WhatsApp flyer (isiXhosa and English)</td><td>US1, US8</td><td><span class="chip must">Must</span></td><td class="num">3</td><td>1</td></tr>
+        <tr><td>3</td><td>Worker profile with ID badge and rating</td><td>US2</td><td><span class="chip must">Must</span></td><td class="num">5</td><td>2</td></tr>
+        <tr><td>4</td><td>Post-a-job form</td><td>US1</td><td><span class="chip must">Must</span></td><td class="num">5</td><td>2</td></tr>
+        <tr><td>5</td><td>Manual matching process and feedback form</td><td>US4</td><td><span class="chip must">Must</span></td><td class="num">3</td><td>2</td></tr>
+        <tr><td>6</td><td>Two-way ratings and reviews</td><td>US7</td><td><span class="chip should">Should</span></td><td class="num">5</td><td>3</td></tr>
+        <tr><td>7</td><td>Job feed with location filter</td><td>US4</td><td><span class="chip should">Should</span></td><td class="num">8</td><td>3</td></tr>
+        <tr><td>8</td><td>Low-data mode</td><td>US6</td><td><span class="chip should">Should</span></td><td class="num">5</td><td>4</td></tr>
+        <tr><td>9</td><td>In-app escrow payment</td><td>US5</td><td><span class="chip should">Should</span></td><td class="num">8</td><td>4</td></tr>
+        <tr><td>10</td><td>isiXhosa language support</td><td>US8</td><td><span class="chip could">Could</span></td><td class="num">3</td><td>4</td></tr>
+        <tr><td>11</td><td>Verified badge subscription (R99/month)</td><td>US3</td><td><span class="chip could">Could</span></td><td class="num">5</td><td>Later</td></tr>
+        <tr><td>12</td><td>Business bundles for recurring tasks</td><td>US1</td><td><span class="chip could">Could</span></td><td class="num">8</td><td>Later</td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="4">Total</td><td class="num">63</td><td></td></tr></tfoot>
+    </table>
+  </div>
+  <p><strong>Priority logic.</strong> The supply side comes first. Deliverable 2 identified the chicken-and-egg problem and planned to sign up 20 to 30 verified workers before opening to consumers.</p>
+  <div class="callout">
+    <p><strong>How the backlog changed.</strong> At the sprint review on 14 August 2026 we agreed to bring real payment and escrow, then real ID and skill verification, into the next sprint. Both were marked Done on Trello, on 18 and 19 August 2026 (see the <a href="#logbook">logbook</a>).</p>
+  </div>
+
+  <div class="reflection">
+    <h3 id="product-reflection">Reflection</h3>
+    <p><strong>Why I chose this evidence.</strong> This backlog shows decision-making, not only a list of features.</p>
+    <p><strong>What I learned.</strong> Prioritising the backlog was harder than writing it, because every feature felt important. I used our survey and our feasibility risks to decide. Trust features and worker recruitment are Must-haves, while subscriptions and business bundles can wait. The biggest trade-off was web application versus mobile app. We chose the web application for its free resources, which moved the Android build down the backlog. In August we brought real payment and escrow and real ID and skill verification forward, because trust was what our survey said matters most. A backlog is a living document that changes as the team learns (Schwaber and Sutherland, 2020).</p>
+    <p><strong>What I would do differently.</strong> I would record the date and reason for every re-prioritisation on the backlog itself. Right now that story is only in the logbook.</p>
+    <p><strong>How it connects.</strong> The top items on this backlog become the sprint backlog, which takes the first sprint's items and breaks them into tasks.</p>
+  </div>
 </section>
 
+<!-- ====================== 4. SPRINT BACKLOG ====================== -->
 <section id="sprint">
-<h2>4. Sprint Backlog</h2>
-<h3>Evidence</h3>
-<p><strong>Sprint 1 goal:</strong> Recruit and verify the first 25 workers and prepare the consumer WhatsApp flyer, so the concierge MVP can start in Week 1–2.</p>
-<p><strong>Sprint length:</strong> 1 week &nbsp;|&nbsp; <strong>Dates:</strong> 04 May 2026 – 26 October 2026 (tracked as a series of sprints on Trello)</p>
-<div class="wrap"><table>
-<tr><th>Task</th><th>Backlog item</th><th>Owner</th><th>Points</th><th>Status</th></tr>
-<tr><td>Create Google Form for worker details (name, photo, ID, skills, availability)</td><td>1</td><td>Precious</td><td>2</td><td>To Do</td></tr>
-<tr><td>Set up WhatsApp group for the worker directory</td><td>1</td><td>Precious</td><td>1</td><td>To Do</td></tr>
-<tr><td>Visit taxi ranks and spaza shops to recruit workers</td><td>1</td><td>Everyone</td><td>3</td><td>To Do</td></tr>
-<tr><td>Check IDs and build the verified worker list</td><td>1</td><td>Ntombenhle</td><td>2</td><td>To Do</td></tr>
-<tr><td>Design the one-page flyer (isiXhosa and English)</td><td>2</td><td>Stephan</td><td>3</td><td>To Do</td></tr>
-<tr><td>Proofread flyer text and references</td><td>2</td><td>Ntombenhle</td><td>1</td><td>To Do</td></tr>
-<tr><td>Share flyer in community, church and school groups</td><td>2</td><td>Everyone</td><td>2</td><td>To Do</td></tr>
-</table></div>
-<p><strong>Sprint success measure (from Deliverable 2):</strong> at least 25 workers in the directory by the end of Week 1.</p>
-<h3>Reflection</h3>
-<div class="refl">
-<p>The sprint backlog turned the big product backlog into a small plan we could actually finish in a week. I chose a goal that matched our MVP plan, so the sprint had a clear measure of success. Assigning owners made it easier to see who was responsible for each task. By the end of this period 13 worker profiles had been created in our app against the target of 25, so the recruitment work carried over into later sprints, which are now tracked on Trello. I learned that a sprint goal should be small enough to be realistic. The sprint backlog connects to the logbook, where the stand-ups and retrospective show whether the plan worked.</p>
-</div>
+  <h2>4. Sprint backlog</h2>
+  <p class="lede">The plan for one sprint: a goal, the work chosen for it, and who does what.</p>
+
+  <h3 class="ev-h" id="sprint-evidence">Evidence</h3>
+  <p><strong>Sprint 1 goal:</strong> recruit and verify the first 25 workers and prepare the consumer WhatsApp flyer, so the concierge MVP can start in Weeks 1 and 2.</p>
+  <p><strong>Sprint length:</strong> one week. Sprint 1 started on Monday 4 May 2026. The series of sprints ran from 4 May to 26 October 2026 and was tracked on Trello. <strong>Committed work:</strong> 8 points (backlog items 1 and 2).</p>
+  <div class="wrap" role="region" aria-label="Sprint 1 backlog" tabindex="0">
+    <table>
+      <thead><tr><th scope="col">Task</th><th scope="col">Backlog item</th><th scope="col">Owner</th><th scope="col" class="num">Points</th><th scope="col">Outcome</th></tr></thead>
+      <tbody>
+        <tr><td>Create Google Form for worker details (name, photo, ID, skills, availability)</td><td>1</td><td>Precious</td><td class="num">1</td><td><span class="chip done">Done</span></td></tr>
+        <tr><td>Set up WhatsApp group for the worker directory</td><td>1</td><td>Precious</td><td class="num">1</td><td><span class="chip done">Done</span></td></tr>
+        <tr><td>Visit taxi ranks and spaza shops to recruit workers</td><td>1</td><td>Everyone</td><td class="num">2</td><td><span class="chip carry">Carried over</span></td></tr>
+        <tr><td>Check IDs and build the verified worker list</td><td>1</td><td>Ntombenhle</td><td class="num">1</td><td><span class="chip carry">Carried over</span></td></tr>
+        <tr><td>Design the one-page flyer (isiXhosa and English)</td><td>2</td><td>Stephan</td><td class="num">1</td><td><span class="chip done">Done</span></td></tr>
+        <tr><td>Proofread flyer text and references</td><td>2</td><td>Ntombenhle</td><td class="num">1</td><td><span class="chip done">Done</span></td></tr>
+        <tr><td>Share flyer in community, church and school groups</td><td>2</td><td>Everyone</td><td class="num">1</td><td><span class="chip done">Done</span></td></tr>
+      </tbody>
+      <tfoot><tr><td colspan="3">Total committed</td><td class="num">8</td><td></td></tr></tfoot>
+    </table>
+  </div>
+  <p><strong>Sprint success measure</strong> (from Deliverable 2): at least 25 workers in the directory by the end of Week 1.</p>
+  <p><strong>Result.</strong> By the retrospective on 21 August 2026, 13 worker profiles had been created, which is 52% of the target of 25. The recruitment work carried over into later sprints.</p>
+  <figure>
+    <img src="images/trello-board.png" alt="Screenshot of the TradeLoop team's Trello board" loading="lazy" onerror="this.closest('figure').hidden=true">
+    <figcaption>Our Trello board, where the sprints were tracked. The <a href="https://trello.com/b/f6mGgCCQ">live board</a> is linked in the About section.</figcaption>
+  </figure>
+
+  <div class="reflection">
+    <h3 id="sprint-reflection">Reflection</h3>
+    <p><strong>Why I chose this evidence.</strong> The sprint backlog turned the big product backlog into a small plan we could actually finish in a week. I chose a goal that matched our MVP plan, so the sprint had a clear measure of success.</p>
+    <p><strong>What I learned.</strong> Assigning owners made it easier to see who was responsible for each task. The result was honest: 13 profiles against a target of 25, so recruitment carried over, and later sprints are tracked on Trello. A sprint goal should be small enough to be realistic, because it is the single objective the team commits to for the sprint (Schwaber and Sutherland, 2020).</p>
+    <p><strong>What I would do differently.</strong> I would set the worker target from how many people we actually signed up in the first days, not from a fixed number chosen before we started.</p>
+    <p><strong>How it connects.</strong> The sprint backlog connects to the logbook, where the stand-ups and the retrospective show whether the plan worked.</p>
+  </div>
 </section>
 
+<!-- ====================== 5. LOGBOOK ====================== -->
 <section id="logbook">
-<h2>5. Agile Logbook</h2>
-<h3>Evidence</h3>
-<p>Full weekly logbooks (Word documents): <a href="documents/TradeLoop_Agile_Logbook_Final__1_.docx">23 Apr – 17 Jul</a> · <a href="documents/TradeLoop_Agile_Logbook_Updated__21-24_July_.docx">21–24 Jul</a> · <a href="documents/TradeLoop_Agile_Logbook_28-31July_Precious.docx">28–31 Jul</a> · <a href="documents/TradeLoop_Agile_Logbook_4-7Aug_Precious_Lebogang_Mtsweni.docx">4–7 Aug</a></p>
-<div class="wrap"><table>
-<tr><th>Date</th><th>Type</th><th>Notes</th></tr>
-<tr><td>02-05-2026</td><td>Sprint planning</td><td>Deliverable 3 planning session. Agreed a three-sprint structure and assigned ownership: Precious (executive summary and financials), Ntombenhle (implementation plan), Stephan (design and pitch deck visuals). Present: Precious, Ntombenhle, Stephan.</td></tr>
-<tr><td>22-07-2026</td><td>Stand-up</td><td>Done: Stephan built the Client/Worker toggle and guide panel layout; I drafted the onboarding and job-posting walkthrough steps with jump buttons. Next: finish the remaining steps, add a search bar, write tips on ID verification and escrow. Blockers: the new highlighting must not break existing navigation; Stephan tested every jump button.</td></tr>
-<tr><td>30-07-2026</td><td>Stand-up</td><td>Done: finished the trade request flow for the website prototype, linked all pages, tested on a few screen sizes. Next: walk through it with my teammate and fix spacing. Blockers: some pages look cramped on small windows; undecided whether to test the website separately from the mobile prototype.</td></tr>
-<tr><td>06-08-2026</td><td>Stand-up</td><td>Done: finished the light/dark toggle (it persists and cross-fades), added the logo to the nav, footer and favicon, started the Brand &amp; UI Guide. Next: finish the guide and start a progress deck. Blockers: mapping the client and worker flows step by step took longer than expected.</td></tr>
-<tr><td>14-08-2026</td><td>Sprint review</td><td>The website and app prototype were still two separate files, so the priority was connecting "Post a Job" and "Sign up to earn" to the app prototype and moving towards a real account system. Next sprint agreed: real payment and escrow, then real ID and skill verification, and lining up Khayelitsha clients and workers to test.</td></tr>
-<tr><td>21-08-2026</td><td>Retrospective</td><td>Went well: real payment and escrow integration (18 Aug) and real ID and skill verification (19 Aug) are Done on Trello, and 13 worker profiles were created. To improve: MVP launch and matching is still in progress and measure-and-report is not started; 13 profiles is below the target of 25. Action: finish the matching days, then measure and report, and update Trello daily rather than relying on WhatsApp.</td></tr>
-</table></div>
-<h3>Reflection</h3>
-<div class="refl">
-<p>Keeping a logbook made our progress visible and honest. The stand-up notes showed me where we were stuck, and the retrospective gave us a chance to improve how we worked, not just what we produced. I chose these entries because they show the full sprint cycle from planning to retrospective. Our retrospective showed that we should have started referencing earlier and used a shared task board more consistently instead of relying on WhatsApp, so our later sprints are tracked on Trello. Building the website also taught me that something can look finished but not actually work, so I now test what I build and not just look at it. I learned that small, regular records are more useful than one big report at the end. The logbook connects everything: it tests the charter’s working agreements, shows progress on the sprint backlog and gives evidence for re-prioritising the product backlog.</p>
-</div>
+  <h2>5. Agile logbook</h2>
+  <p class="lede">A record of stand-ups, planning, review and retrospective, kept as we worked.</p>
+
+  <h3 class="ev-h" id="logbook-evidence">Evidence</h3>
+  <p>The full weekly logbooks are Word documents (TradeLoop Group, 2026a):</p>
+  <ul>
+    <li><a href="documents/TradeLoop_Agile_Logbook_Final__1_.docx">23 April to 17 July 2026</a></li>
+    <li><a href="documents/TradeLoop_Agile_Logbook_Updated__21-24_July_.docx">21 to 24 July 2026</a></li>
+    <li><a href="documents/TradeLoop_Agile_Logbook_28-31July_Precious.docx">28 to 31 July 2026</a></li>
+    <li><a href="documents/TradeLoop_Agile_Logbook_4-7Aug_Precious_Lebogang_Mtsweni.docx">4 to 7 August 2026</a></li>
+  </ul>
+  <p>Below are the entries I selected because together they show the full sprint cycle: planning, stand-ups, review and retrospective.</p>
+
+  <article class="entry">
+    <header><time datetime="2026-05-02">2 May 2026</time><span class="chip type">Sprint planning</span></header>
+    <dl>
+      <dt>What happened</dt><dd>Deliverable 2 planning session. We agreed a three-sprint structure and assigned ownership: Precious (executive summary and financials), Ntombenhle (implementation plan), Stephan (design and pitch deck visuals).</dd>
+      <dt>Present</dt><dd>Precious, Ntombenhle, Stephan.</dd>
+    </dl>
+  </article>
+
+  <article class="entry">
+    <header><time datetime="2026-07-22">22 July 2026</time><span class="chip type">Stand-up</span></header>
+    <dl>
+      <dt>Done</dt><dd>Stephan built the Client/Worker toggle and the guide panel layout. I drafted the onboarding and job-posting walkthrough steps with jump buttons.</dd>
+      <dt>Next</dt><dd>Finish the remaining steps, add a search bar, and write tips on ID verification and escrow.</dd>
+      <dt>Blockers</dt><dd>The new highlighting must not break the existing navigation. Stephan tested every jump button.</dd>
+    </dl>
+  </article>
+
+  <article class="entry">
+    <header><time datetime="2026-07-30">30 July 2026</time><span class="chip type">Stand-up</span></header>
+    <dl>
+      <dt>Done</dt><dd>Finished the trade request flow for the website prototype, linked all pages, and tested on a few screen sizes.</dd>
+      <dt>Next</dt><dd>Walk through it with my teammate and fix spacing.</dd>
+      <dt>Blockers</dt><dd>Some pages look cramped on small windows. We have not decided whether to test the website separately from the mobile prototype.</dd>
+    </dl>
+  </article>
+
+  <article class="entry">
+    <header><time datetime="2026-08-06">6 August 2026</time><span class="chip type">Stand-up</span></header>
+    <dl>
+      <dt>Done</dt><dd>Finished the light/dark toggle (it persists and cross-fades), added the logo to the nav, footer and favicon, and started the Brand &amp; UI Guide.</dd>
+      <dt>Next</dt><dd>Finish the guide and start a progress deck.</dd>
+      <dt>Blockers</dt><dd>Mapping the client and worker flows step by step took longer than expected.</dd>
+    </dl>
+  </article>
+
+  <article class="entry">
+    <header><time datetime="2026-08-14">14 August 2026</time><span class="chip type">Sprint review</span></header>
+    <dl>
+      <dt>What happened</dt><dd>The website and the app prototype were still two separate files. The priority was to connect "Post a Job" and "Sign up to earn" to the app prototype and move towards a real account system.</dd>
+      <dt>Next sprint</dt><dd>Real payment and escrow, then real ID and skill verification, and lining up Khayelitsha clients and workers to test.</dd>
+    </dl>
+  </article>
+
+  <article class="entry">
+    <header><time datetime="2026-08-21">21 August 2026</time><span class="chip type">Retrospective</span></header>
+    <dl>
+      <dt>Went well</dt><dd>Real payment and escrow integration (18 August) and real ID and skill verification (19 August) are Done on Trello. 13 worker profiles were created.</dd>
+      <dt>To improve</dt><dd>MVP launch and matching is still in progress and measure-and-report has not started. 13 profiles is below the target of 25.</dd>
+      <dt>Action</dt><dd>Finish the matching days, then measure and report, and update Trello daily instead of relying on WhatsApp.</dd>
+    </dl>
+  </article>
+
+  <div class="reflection">
+    <h3 id="logbook-reflection">Reflection</h3>
+    <p><strong>Why I chose this evidence.</strong> These entries show the full sprint cycle, from planning to retrospective.</p>
+    <p><strong>What I learned.</strong> Keeping a logbook made our progress visible and honest. The stand-up notes showed me where we were stuck, and the retrospective gave us a chance to improve how we worked, not only what we produced (Schwaber and Sutherland, 2020). The retrospective showed that we should have started referencing earlier and used a shared task board more consistently instead of relying on WhatsApp, so our later sprints are tracked on Trello. Building the website also taught me that something can look finished but not actually work, so I now test what I build and do not only look at it. Small, regular records are more useful than one big report at the end.</p>
+    <p><strong>What I would do differently.</strong> Our stand-ups were written on WhatsApp, which was flexible but easy to skip. The Scrum Guide describes the daily event as 15 minutes at the same time each day (Schwaber and Sutherland, 2020). I would keep the short written format but fix a daily time.</p>
+    <p><strong>How it connects.</strong> The logbook tests the charter's working agreements, shows progress on the sprint backlog and gives evidence for re-prioritising the product backlog.</p>
+  </div>
 </section>
 
+<!-- ====================== CONNECT ====================== -->
 <section id="connect">
-<h2>Connect: how it all fits together</h2>
-<p>The <strong>charter</strong> set the rules and roles. The survey-based <strong>user stories</strong> described what users need. The <strong>product backlog</strong> ranked those needs, the <strong>sprint backlog</strong> turned the top items into a one-week plan, and the <strong>logbook</strong> recorded what happened and what we learned. Each retrospective feeds back into the backlog, which is the Agile cycle in practice.</p>
-<div class="refl"><p>Over this project I moved from writing documents to building and documenting a product. I learned to wire a mobile menu so it actually works, build a persistent light/dark toggle, write a Brand and UI Guide, and present my own work to the team. Planning in sprints, tracking on Trello and holding stand-ups taught me to break big goals into small, testable steps, and leading a two-person team taught me to test what I build instead of only making it look finished.</p></div>
-<h3>References</h3>
-<p>Ipsos South Africa (2023) <em>Household Services Survey 2023</em>. Cape Town: Ipsos.<br>
-Statistics South Africa (2024) <em>Quarterly Labour Force Survey Q3 2024</em>. Pretoria: Stats SA.<br>
-TradeLoop Group (2026) <em>TradeLoop Community Survey</em> [Google Form]. Conducted 10–12 March 2026, Khayelitsha Site C, Cape Town.<br>
-TradeLoop Group (2026) <em>TradeLoop Agile Logbooks, 23 April – 21 August 2026</em> [Word documents]. Cape Peninsula University of Technology.</p>
+  <h2>Connect: how it all fits together</h2>
+  <p class="lede">One cycle, five artefacts.</p>
+  <p>The <strong>charter</strong> set the rules and roles. The survey-based <strong>user stories</strong> described what users need. The <strong>product backlog</strong> ranked those needs, the <strong>sprint backlog</strong> turned the top items into a one-week plan, and the <strong>logbook</strong> recorded what happened and what we learned. Each retrospective feeds back into the backlog, which is the Agile cycle in practice.</p>
+  <ol class="loop" aria-label="The five artefacts in order">
+    <li><a href="#charter">Charter</a></li>
+    <li><a href="#stories">User stories</a></li>
+    <li><a href="#product">Product backlog</a></li>
+    <li><a href="#sprint">Sprint backlog</a></li>
+    <li><a href="#logbook">Logbook</a></li>
+  </ol>
+  <div class="loop-back">Each retrospective in the logbook feeds back into the product backlog.</div>
+
+  <h3>Project timeline</h3>
+  <ol class="timeline">
+    <li><time datetime="2026-03-10">10 to 12 March 2026</time>Community survey of 21 residents in Khayelitsha Site C (Deliverable 1).</li>
+    <li><time datetime="2026-04-23">23 April 2026</time>First weekly logbook begins.</li>
+    <li><time datetime="2026-05-02">2 May 2026</time>Planning session. We agree a three-sprint structure and assign owners.</li>
+    <li><time datetime="2026-05-04">4 May 2026</time>Sprint 1 starts: recruit the first 25 workers and prepare the consumer flyer.</li>
+    <li><time datetime="2026-05-24">24 May 2026</time>Deliverable 2: Marketing Strategy, Feasibility and MVP.</li>
+    <li><time datetime="2026-07-22">22 July to 6 August 2026</time>Prototype stand-ups: guide panel, trade request flow, light/dark toggle, Brand &amp; UI Guide.</li>
+    <li><time datetime="2026-08-14">14 August 2026</time>Sprint review. Next sprint: real payment and escrow, then real ID and skill verification.</li>
+    <li><time datetime="2026-08-18">18 and 19 August 2026</time>Payment and escrow (18 August) and ID and skill verification (19 August) are Done on Trello.</li>
+    <li><time datetime="2026-08-21">21 August 2026</time>Retrospective: 13 worker profiles against a target of 25.</li>
+    <li><time datetime="2026-10-20">20 to 27 October 2026</time>Portfolio assessment window for Project Presentation 3. The tracked sprint series ends on 26 October.</li>
+  </ol>
+
+  <div class="reflection">
+    <h3>Overall reflection</h3>
+    <p>Over this project I moved from writing documents to building and documenting a product. I learned to wire a mobile menu so it actually works, build a persistent light/dark toggle, write a Brand and UI Guide, and present my own work to the team. Planning in sprints, tracking on Trello and holding stand-ups taught me to break big goals into small, testable steps. Leading a three-person team taught me to test what I build instead of only making it look finished.</p>
+  </div>
 </section>
-</main>
-<footer>Precious L Mtsweni | 230604048 | Cape Peninsula University of Technology | October 2026</footer>
+
+<!-- ====================== REFERENCES ====================== -->
+<section id="references" class="refs">
+  <h2>References</h2>
+  <p class="lede">Harvard style.</p>
+  <p>Agile Business Consortium (no date) <em>What is MoSCoW prioritization?</em> Available at: <a href="https://www.agilebusiness.org/resource/video-mastering-moscow-prioritisation.html">https://www.agilebusiness.org/resource/video-mastering-moscow-prioritisation.html</a> (Accessed: 5 November 2026).</p>
+  <p>Beck, K. <em>et al.</em> (2001) <em>Manifesto for Agile Software Development</em>. Available at: <a href="https://agilemanifesto.org/">https://agilemanifesto.org/</a> (Accessed: 5 November 2026).</p>
+  <p>Cohn, M. (2004) <em>User stories applied: for Agile software development</em>. Boston: Addison-Wesley.</p>
+  <p>Ipsos South Africa (2023) <em>Household Services Survey 2023</em>. Cape Town: Ipsos.</p>
+  <p>Schwaber, K. and Sutherland, J. (2020) <em>The Scrum Guide: the definitive guide to Scrum: the rules of the game</em>. Available at: <a href="https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-US.pdf">https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-US.pdf</a> (Accessed: 5 November 2026).</p>
+  <p>Statistics South Africa (2024) <em>Quarterly Labour Force Survey, Quarter 3: 2024</em>. Pretoria: Statistics South Africa.</p>
+  <p>TradeLoop Group (2026a) <em>TradeLoop Agile Logbooks, 23 April to 21 August 2026</em> [Word documents]. Cape Town: Cape Peninsula University of Technology.</p>
+  <p>TradeLoop Group (2026b) <em>TradeLoop Community Survey</em> [Google Form]. Conducted 10 to 12 March 2026, Khayelitsha Site C, Cape Town.</p>
+  <a class="back" href="#about">Back to the top of the page</a>
+</section>
+
+<footer>
+  Precious L Mtsweni | 230604048 | Cape Peninsula University of Technology | October 2026
+</footer>
+
+  </main>
+</div>
+
+<script>
+(function () {
+  var root = document.documentElement;
+  var btn = document.getElementById('theme');
+
+  function current() {
+    var t = root.getAttribute('data-theme');
+    if (t) return t;
+    return window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  function label() { btn.textContent = current() === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'; }
+  btn.addEventListener('click', function () {
+    var next = current() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('tl-theme', next); } catch (e) {}
+    label();
+  });
+  label();
+
+  /* Highlight the section being read in the contents list. */
+  var links = [].slice.call(document.querySelectorAll('.toc a[href^="#"]'));
+  var byId = {};
+  links.forEach(function (a) { byId[a.getAttribute('href').slice(1)] = a; });
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (e) {
+        if (!e.isIntersecting) return;
+        links.forEach(function (a) { a.removeAttribute('aria-current'); });
+        var a = byId[e.target.id];
+        if (a) a.setAttribute('aria-current', 'true');
+      });
+    }, { rootMargin: '-15% 0px -75% 0px' });
+    Object.keys(byId).forEach(function (id) {
+      var s = document.getElementById(id);
+      if (s) io.observe(s);
+    });
+  }
+})();
+</script>
 </body>
 </html>
